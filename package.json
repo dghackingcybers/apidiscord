@@ -1,0 +1,15 @@
+{
+    "name": "apidiscord",
+    "version": "1.0.0",
+    "description": "API para buscar badges do Discord",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "node-fetch": "^2.6.1",
+      "dotenv": "^16.0.3"
+    }
+  }
+  
