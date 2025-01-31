@@ -7,7 +7,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 
-// Mapeamento completo de flags
 const USER_FLAGS = {
   1: "Discord Employee",            // 00000001
   2: "Partnered Server Owner",      // 00000010
@@ -22,12 +21,14 @@ const USER_FLAGS = {
   4194304: "Active Developer",      // 100000000000000000
   0x00000001: "Nitro",              // Nitro
   0x00000100: "Nitro Classic",      // Nitro Classic
+  262144: "Moderator Programs Alumni", // 100000000000000000000
+  131072: "Early Verified Bot Developer", // 10000000000000000
+  0x00010000: "Discord Nitro Basic", // Nitro Basic
+  0x00020000: "Discord Nitro Boost",  // Nitro Boost
 };
 
-// Função para obter todas as badges de um usuário
 function getBadges(flags) {
   const badges = [];
-  // Verificando cada flag e combinando com as flags do usuário
   Object.entries(USER_FLAGS).forEach(([bit, badge]) => {
     if (flags & parseInt(bit)) {
       badges.push(badge);
