@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 
 // Flags de Badges do Discord
+// Mapeamento completo de badges
 const USER_FLAGS = {
   1: "Discord Employee",
   2: "Partnered Server Owner",
@@ -20,9 +21,11 @@ const USER_FLAGS = {
   16384: "Bug Hunter Level 2",
   131072: "Verified Bot Developer",
   4194304: "Active Developer",
+  0x00000001: "Nitro",
+  0x00000100: "Nitro Classic"
 };
 
-// Função para converter os `public_flags` em badges
+// Função para converter os flags em badges
 function getBadges(flags) {
   return Object.entries(USER_FLAGS)
     .filter(([bit]) => flags & bit)
