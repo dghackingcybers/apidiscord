@@ -10,26 +10,30 @@ const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 // Flags de Badges do Discord
 // Mapeamento completo de badges
 const USER_FLAGS = {
-  1: "Discord Employee",
-  2: "Partnered Server Owner",
-  4: "HypeSquad Events",
-  8: "Bug Hunter Level 1",
-  64: "HypeSquad Bravery",
-  128: "HypeSquad Brilliance",
-  256: "HypeSquad Balance",
-  512: "Early Supporter",
-  16384: "Bug Hunter Level 2",
-  131072: "Verified Bot Developer",
-  4194304: "Active Developer",
-  0x00000001: "Nitro",
-  0x00000100: "Nitro Classic"
+  1: "Discord Employee",              // 00000001
+  2: "Partnered Server Owner",        // 00000010
+  4: "HypeSquad Events",              // 00000100
+  8: "Bug Hunter Level 1",            // 00001000
+  64: "HypeSquad Bravery",            // 01000000
+  128: "HypeSquad Brilliance",        // 10000000
+  256: "HypeSquad Balance",           // 100000000
+  512: "Early Supporter",             // 1000000000
+  16384: "Bug Hunter Level 2",        // 0100000000000000
+  131072: "Verified Bot Developer",   // 0010000000000000
+  4194304: "Active Developer",        // 100000000000000000
+  0x00000001: "Nitro",                // Nitro flag
+  0x00000100: "Nitro Classic",        // Nitro Classic flag
 };
 
-// Função para converter os flags em badges
+// Função para obter todas as badges de acordo com as flags
 function getBadges(flags) {
-  return Object.entries(USER_FLAGS)
-    .filter(([bit]) => flags & bit)
-    .map(([_, badge]) => badge);
+  const badges = [];
+  Object.entries(USER_FLAGS).forEach(([bit, badge]) => {
+    if (flags & parseInt(bit)) {
+      badges.push(badge);
+    }
+  });
+  return badges;
 }
 
 // Rota para buscar badges do usuário
